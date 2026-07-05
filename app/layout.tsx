@@ -1,41 +1,34 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Inter, JetBrains_Mono } from 'next/font/google'
+import './globals.css'
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
-};
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  display: "swap",
-  subsets: ["latin"],
-});
+  title: 'employeeme',
+  description: 'we are a new type of company that helps young adults with little-to-no qualifications find skills and work without endless courses and dead-end jobs',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.Node
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="bg-[#FBFBF9] text-[#1C293C] antialiased min-h-screen selection:bg-[#FDC800] selection:text-[#1C293C]">
+        {children}
       </body>
     </html>
-  );
+  )
 }
